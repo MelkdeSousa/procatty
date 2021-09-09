@@ -7,4 +7,63 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Admin {
+  id       String @default(uuid()) @db.Uuid
+  name     String
+  username String @id @unique
+  email    String @unique
+  password String
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Professional {
+  id          String @id @default(uuid()) @db.Uuid
+  name        String
+  description String
+  email       String @unique
+  phone       String @unique
+  avatar      String
+
+  addresses Address[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("professionals")
+}
+
+model Schedule {
+  id         String   @id @default(uuid()) @db.Uuid
+  start_date DateTime @db.Date
+  end_date   DateTime @db.Date
+  start_time DateTime @db.Time
+  end_time   DateTime @db.Time
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("schedules")
+}
+
+model Address {
+  id          String @unique @default(uuid()) @db.Uuid
+  postal_code String
+  state       String
+  city        String
+  district    String
+  street      String
+  number      Int
+
+  professional_id String       @db.Uuid
+  professional    Professional @relation(fields: [professional_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@id([number, state, city])
+  @@map("addresses")
+}
