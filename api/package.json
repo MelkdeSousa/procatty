@@ -12,7 +12,8 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:restart": "docker-compose restart",
-    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --watch *.ts src/server.ts"
+    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --watch *.ts src/server.ts",
+    "prima": "npx prisma"
   },
   "dependencies": {
     "@prisma/client": "^3.0.1",
