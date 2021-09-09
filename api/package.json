@@ -7,6 +7,13 @@
   "repository": "https://bitbucket.org/melk_de_sousa/procatty",
   "author": "Melk de Sousa",
   "private": true,
+  "scripts": {
+    "start": "node ./dist/src/server.js",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:restart": "docker-compose restart",
+    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --watch *.ts src/server.ts"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
