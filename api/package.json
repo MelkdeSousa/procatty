@@ -1,0 +1,10 @@
+{
+  "name": "procatty-api",
+  "version": "1.0.0",
+  "main": "src/.dist/server.js",
+  "license": "MIT",
+  "description": "catalog professional application",
+  "repository": "https://bitbucket.org/melk_de_sousa/procatty",
+  "author": "Melk de Sousa",
+  "private": true
+}
