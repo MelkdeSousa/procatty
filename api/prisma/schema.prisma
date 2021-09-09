@@ -29,6 +29,7 @@ model Professional {
   avatar      String
 
   addresses Address[]
+  schedules Schedule[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -45,6 +46,9 @@ model Schedule {
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  professional_id String       @db.Uuid
+  professional    Professional @relation(fields: [professional_id], references: [id])
 
   @@map("schedules")
 }
