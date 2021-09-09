@@ -13,12 +13,12 @@
                     <mxGeometry y="30" width="160" height="145" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="Admin" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="510" y="330" width="160" height="175" as="geometry">
+                    <mxGeometry x="470" y="380" width="160" height="178" as="geometry">
                         <mxRectangle x="510" y="330" width="110" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="14" value="&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;li&gt;name&lt;/li&gt;&lt;li&gt;username&lt;/li&gt;&lt;li&gt;email&lt;/li&gt;&lt;li&gt;password&lt;/li&gt;&lt;li&gt;permissions&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fontSize=14;fontColor=#f0f0f0;" parent="8" vertex="1">
-                    <mxGeometry y="30" width="160" height="145" as="geometry"/>
+                <mxCell id="14" value="&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;li&gt;name&lt;/li&gt;&lt;li&gt;username&lt;/li&gt;&lt;li&gt;email&lt;/li&gt;&lt;li&gt;password&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fontSize=14;fontColor=#f0f0f0;" parent="8" vertex="1">
+                    <mxGeometry y="30" width="160" height="148" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="Address" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
                     <mxGeometry x="340" y="125" width="160" height="190" as="geometry">
@@ -36,28 +36,16 @@
                 <mxCell id="11" value="&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;li&gt;start_date&lt;/li&gt;&lt;li&gt;end_date&lt;/li&gt;&lt;li&gt;start_time&lt;/li&gt;&lt;li&gt;end_time&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fontSize=14;fontColor=#f0f0f0;" parent="10" vertex="1">
                     <mxGeometry y="30" width="160" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;fontColor=#f0f0f0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="9">
+                <mxCell id="15" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;fontColor=#f0f0f0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2" target="9" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="185" y="280" as="sourcePoint"/>
                         <mxPoint x="285" y="180" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="18" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERmany;fontColor=#f0f0f0;" edge="1" parent="1" source="11" target="13">
+                <mxCell id="18" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERmany;fontColor=#f0f0f0;" parent="1" source="11" target="13" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="290" y="380" as="sourcePoint"/>
                         <mxPoint x="390" y="280" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="22" value="Permission" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fontColor=#f0f0f0;" vertex="1" parent="1">
-                    <mxGeometry x="710" y="125" width="160" height="120" as="geometry"/>
-                </mxCell>
-                <mxCell id="24" value="&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;li&gt;type&lt;/li&gt;&lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fontSize=14;fontColor=#f0f0f0;" vertex="1" parent="22">
-                    <mxGeometry y="30" width="160" height="90" as="geometry"/>
-                </mxCell>
-                <mxCell id="25" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERmany;fontColor=#f0f0f0;" edge="1" parent="1" source="14" target="24">
-                    <mxGeometry width="100" height="100" relative="1" as="geometry">
-                        <mxPoint x="630" y="350" as="sourcePoint"/>
-                        <mxPoint x="730" y="250" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
