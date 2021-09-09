@@ -6,5 +6,17 @@
   "description": "catalog professional application",
   "repository": "https://bitbucket.org/melk_de_sousa/procatty",
   "author": "Melk de Sousa",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.9.0",
+    "eslint": "^7.32.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  }
 }
