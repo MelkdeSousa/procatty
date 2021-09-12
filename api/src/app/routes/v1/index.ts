@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ProfessionalRoutes from './ProfessionalRoutes'
+import ProfessionalRoutes from './Professional'
 
 const routes = Router()
 
