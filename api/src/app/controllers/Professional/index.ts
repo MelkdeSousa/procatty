@@ -49,6 +49,14 @@ class ProfessionalController {
 
     return response.status(200).json(professionalExists)
   }
+
+  async deleteProfessional (request: Request, response: Response) {
+    const { id } = request.params
+
+    await professional.delete({ where: { id } })
+
+    return response.status(204)
+  }
 }
 
 export default ProfessionalController
