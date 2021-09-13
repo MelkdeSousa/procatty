@@ -5,7 +5,7 @@ import { professional } from '../../../infra/database/prisma'
 
 class ProfessionalController {
   async getProfessionals (_request: Request, response: Response) {
-    const professionals = await professional.findMany()
+    const professionals = await professional.findMany({ include: { addresses: true, schedules: true } })
 
     return response.json(professionals)
   }
