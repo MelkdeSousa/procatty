@@ -55,7 +55,7 @@ model Schedule {
 }
 
 model Address {
-  id          String @unique @default(uuid()) @db.Uuid
+  id          String @id @default(uuid()) @db.Uuid
   postal_code String
   state       String
   city        String
@@ -69,6 +69,5 @@ model Address {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@id([number, state, city])
   @@map("addresses")
 }
