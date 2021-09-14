@@ -1,26 +1,7 @@
 import { Request, Response } from 'express'
+import toSchedule from 'src/app/utils/toSchedule'
 
 import { schedule, ISchedule } from '../../../infra/database/prisma'
-
-const toSchedule = (start: Date, end: Date) => {
-  const startDateTime = new Date(start)
-  const endDateTime = new Date(end)
-
-  const startDate = startDateTime.toLocaleDateString()
-  const endDate = endDateTime.toLocaleDateString()
-
-  const startTime = startDateTime.toTimeString()
-  const endTime = endDateTime.toTimeString()
-
-  return {
-    start_date_time: startDateTime,
-    end_date_time: endDateTime,
-    start_date: startDate,
-    end_date: endDate,
-    start_time: startTime,
-    end_time: endTime,
-  }
-}
 
 class ScheduleController {
   async getSchedules (_request: Request, response: Response) {
@@ -36,14 +17,14 @@ class ScheduleController {
       end_date_time
     } = request.body as ISchedule
 
-    const scheduleDTO = toSchedule(start_date_time, end_date_time)
+    const scheduleFormatted = toSchedule(start_date_time, end_date_time)
 
     const scheduleExist = await schedule.findFirst({
       where: {
         professional: { id: professional_id },
         professional_id,
-        start_date_time: scheduleDTO.start_date_time,
-        end_date_time: scheduleDTO.end_date_time
+        start_date_time: scheduleFormatted.start_date_time,
+        end_date_time: scheduleFormatted.end_date_time
       }
     })
 
@@ -54,7 +35,7 @@ class ScheduleController {
     const scheduleCreated = await schedule.create({
       data: {
         professional_id,
-        ...scheduleDTO
+        ...scheduleFormatted
       }
     })
 
@@ -72,7 +53,7 @@ class ScheduleController {
       where: { id }
     })
 
-    const scheduleDTO = toSchedule(start_date_time, end_date_time)
+    const scheduleFormatted = toSchedule(start_date_time, end_date_time)
 
     if (!scheduleExists) {
       return response.json({ message: 'Schedule does not exist' })
@@ -81,7 +62,7 @@ class ScheduleController {
     const scheduleUpdated = await schedule.update({
       where: { id },
       data: {
-        ...scheduleDTO
+        ...scheduleFormatted
       }
     })
 
