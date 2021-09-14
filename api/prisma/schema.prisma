@@ -39,11 +39,16 @@ model Professional {
 }
 
 model Schedule {
-  id         String   @id @default(uuid()) @db.Uuid
-  start_date DateTime @db.Date
-  end_date   DateTime @db.Date
-  start_time DateTime @db.Time
-  end_time   DateTime @db.Time
+  id              String   @id @default(uuid()) @db.Uuid
+
+  start_date_time DateTime @db.Timestamp
+  end_date_time   DateTime @db.Timestamp
+
+  start_date String
+  start_time String
+
+  end_date   String
+  end_time   String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
