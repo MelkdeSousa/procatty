@@ -26,7 +26,7 @@ class AddressController {
         district,
         street,
         number,
-        professional_id
+        professional: { id: professional_id }
       },
     })
 
