@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import toSchedule from 'src/app/utils/toSchedule'
+import toSchedule from '../../utils/toSchedule'
 
-import { schedule, ISchedule } from '../../../infra/database/prisma'
+import { availableSchedule, IAvailableSchedule } from '../../../infra/database/prisma'
 
-class ScheduleController {
+class AvailableScheduleController {
   async getSchedules (_request: Request, response: Response) {
-    const schedules = await schedule.findMany({ include: { professional: true } })
+    const schedules = await availableSchedule.findMany({ include: { professional: true } })
 
     return response.status(200).json(schedules)
   }
@@ -15,11 +15,11 @@ class ScheduleController {
       professional_id,
       start_date_time,
       end_date_time
-    } = request.body as ISchedule
+    } = request.body as IAvailableSchedule
 
     const scheduleFormatted = toSchedule(start_date_time, end_date_time)
 
-    const scheduleExist = await schedule.findFirst({
+    const scheduleExist = await availableSchedule.findFirst({
       where: {
         professional: { id: professional_id },
         professional_id,
@@ -32,7 +32,7 @@ class ScheduleController {
       return response.status(400).json({ message: 'Schedule already exists to professional' })
     }
 
-    const scheduleCreated = await schedule.create({
+    const scheduleCreated = await availableSchedule.create({
       data: {
         professional_id,
         ...scheduleFormatted
@@ -47,9 +47,9 @@ class ScheduleController {
       id,
       start_date_time,
       end_date_time
-    } = request.body as ISchedule
+    } = request.body as IAvailableSchedule
 
-    const scheduleExists = await schedule.findFirst({
+    const scheduleExists = await availableSchedule.findFirst({
       where: { id }
     })
 
@@ -59,7 +59,7 @@ class ScheduleController {
       return response.json({ message: 'Schedule does not exist' })
     }
 
-    const scheduleUpdated = await schedule.update({
+    const scheduleUpdated = await availableSchedule.update({
       where: { id },
       data: {
         ...scheduleFormatted
@@ -73,7 +73,7 @@ class ScheduleController {
   async deleteSchedule (request: Request, response: Response) {
     const { id } = request.params
 
-    await schedule.delete({ where: { id } })
+    await availableSchedule.delete({ where: { id } })
 
     return response.status(204)
   }
@@ -81,7 +81,7 @@ class ScheduleController {
   async getScheduleById (request: Request, response: Response) {
     const { id } = request.params
 
-    const scheduleExists = await schedule.findFirst({ where: { id } })
+    const scheduleExists = await availableSchedule.findFirst({ where: { id } })
 
     if (!scheduleExists) {
       return response.status(400).json({ message: 'Schedule not exists.' })
@@ -91,4 +91,4 @@ class ScheduleController {
   }
 }
 
-export default ScheduleController
+export default AvailableScheduleController
