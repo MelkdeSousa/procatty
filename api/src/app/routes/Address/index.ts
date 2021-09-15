@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { isAdmin } from '../../middleware/admin'
 
 import AddressController from '../../controllers/Address'
 
@@ -8,8 +9,9 @@ const addressController = new AddressController()
 
 routes.get('/address', addressController.getAddresses)
 routes.get('/address/:id', addressController.getAddressById)
-routes.post('/address', addressController.createAddress)
-routes.put('/address', addressController.updateAddress)
-routes.delete('/address/:id', addressController.deleteAddress)
+
+routes.post('/address', isAdmin, addressController.createAddress)
+routes.put('/address', isAdmin, addressController.updateAddress)
+routes.delete('/address/:id', isAdmin, addressController.deleteAddress)
 
 export default routes
