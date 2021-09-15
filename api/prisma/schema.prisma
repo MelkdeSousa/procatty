@@ -64,8 +64,8 @@ model Schedule {
   id String @id @default(uuid()) @db.Uuid
 
   name      String
-  email     String @unique
-  telephone String @unique
+  email     String
+  telephone String
 
   start_date_time DateTime @db.Timestamp
   end_date_time   DateTime @db.Timestamp
