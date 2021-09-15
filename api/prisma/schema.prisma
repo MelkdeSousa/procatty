@@ -25,12 +25,13 @@ model Professional {
   id          String @id @default(uuid()) @db.Uuid
   name        String
   description String
-  email       String @unique
-  phone       String @unique
+  email       String
+  phone       String
   avatar      String
 
-  addresses Address[]
-  schedules Schedule[]
+  addresses           Address[]
+  schedules           Schedule[]
+  available_schedules AvailableSchedule[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -38,8 +39,8 @@ model Professional {
   @@map("professionals")
 }
 
-model Schedule {
-  id              String   @id @default(uuid()) @db.Uuid
+model AvailableSchedule {
+  id String @id @default(uuid()) @db.Uuid
 
   start_date_time DateTime @db.Timestamp
   end_date_time   DateTime @db.Timestamp
@@ -47,7 +48,32 @@ model Schedule {
   start_date String
   start_time String
 
+  end_date String
+  end_time String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  professional_id String       @db.Uuid
+  professional    Professional @relation(fields: [professional_id], references: [id])
+
+  @@map("available_schedules")
+}
+
+model Schedule {
+  id String @id @default(uuid()) @db.Uuid
+
+  name      String
+  email     String @unique
+  telephone String @unique
+
+  start_date_time DateTime @db.Timestamp
+  end_date_time   DateTime @db.Timestamp
+
+  start_date String
   end_date   String
+
+  start_time String
   end_time   String
 
   created_at DateTime @default(now())
