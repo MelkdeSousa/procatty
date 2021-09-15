@@ -12,13 +12,11 @@
 
 ## Instalação
 
-### Requisitos
-
-- Instalados
-  - Docker
-  - Docker Compose
-  - NodeJS
-  - NPM / Yarn
+- Requisitos
+    - Docker
+    - Docker Compose
+    - NodeJS
+    - NPM / Yarn
 
 - Clone o repositório
   ```bash
