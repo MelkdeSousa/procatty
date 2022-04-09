@@ -2,25 +2,43 @@ import crypto from 'crypto'
 import { z as zod } from 'zod'
 
 export const entitySchemaValidation = zod.object({
-  _id: zod.string().uuid()
+  id: zod.string().uuid({ message: 'id is invalid' })
 })
 
 export class Entity {
   protected readonly _id: string;
+  protected _errors: {
+    message: string,
+    field: string
+  }[] = []
 
   get id(): string {
     return this._id
   }
 
-  constructor(id?: string) {
-    this._id = id ?? crypto.randomUUID()
+  get errors(): ReadonlyArray<{ message: string, field: string }> { return this._errors }
 
-    this.validate()
+  constructor(id?: string) {
+    if (id && this.idIsValid(id)) {
+      this._id = id
+    }
+
+    if (!id) {
+      this._id = crypto.randomUUID()
+    }
+
+    if (this._errors.length > 0) {
+      throw new Error(`${this._errors[0].field}: ${this._errors[0].message}`)
+    }
   }
 
-  private validate() {
-    const { ...valid } = entitySchemaValidation.parse({ _id: this._id })
+  private idIsValid(id: string) {
+    const isValid = entitySchemaValidation.safeParse({ id: id })
 
-    return valid
+    if (!isValid.success) {
+      isValid.error.errors.map((error) => this._errors.push({ message: error.message.toLowerCase(), field: error.path.join('.').toLowerCase() }))
+    }
+
+    return isValid.success
   }
 }

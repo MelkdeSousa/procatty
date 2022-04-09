@@ -41,10 +41,7 @@ export const professionalSchemaValidation = zod.object({
 
 export class Professional extends Entity {
   private props: IProfessionalProps;
-  private _errors: {
-    message: string,
-    field: string
-  }[] = []
+
 
   get name(): string {
     return this.props.name
@@ -66,15 +63,13 @@ export class Professional extends Entity {
     return this.props.avatar
   }
 
-  get errors(): ReadonlyArray<{ message: string, field: string }> { return this._errors }
-
   constructor(props: IProfessionalProps, id?: string) {
     super(id)
     if (this.isValid(props)) {
       this.props = props
     }
 
-    if (this._errors.length > 0) {
+    if (super.errors.length > 0) {
       throw new Error(`${this._errors[0].field}: ${this._errors[0].message}`)
     }
   }
@@ -89,15 +84,3 @@ export class Professional extends Entity {
     return isValid.success
   }
 }
-
-const props: IProfessionalProps = {
-  name: 'Melk de Sousa',
-  avatar: 'https://github.com/melkdesousa.png',
-  bio: 'I am a professional',
-  email: 'melk@gmail.com',
-  phone: '91986043359'
-}
-
-const assert = new Professional(props)
-
-console.log(assert.errors)
