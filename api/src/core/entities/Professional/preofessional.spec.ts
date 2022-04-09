@@ -3,7 +3,7 @@ import crypto from 'crypto'
 import { IProfessionalProps, Professional } from './professional'
 
 describe('Professional entity', () => {
-  it('deve lançar um erro de que profissional informou um email inválido', () => {
+  it('should throw an error that professional reported an invalid email', () => {
     const props: IProfessionalProps = {
       name: 'Melk de Sousa',
       avatar: 'https://github.com/melkdesousa.png',
@@ -19,7 +19,7 @@ describe('Professional entity', () => {
     expect(assert).toThrow(expected)
   })
 
-  it('deve lançar um erro de que profissional informou um telefone inválido', () => {
+  it('should throw an error that professional reported an invalid phone', () => {
     const props: IProfessionalProps = {
       name: 'Melk de Sousa',
       avatar: 'https://github.com/melkdesousa.png',
@@ -35,7 +35,7 @@ describe('Professional entity', () => {
     expect(assert).toThrow(expected)
   })
 
-  it('deve lançar um erro de que profissional têm id inválido', () => {
+  it('should throw an error that professional have invalid id', () => {
     const props: IProfessionalProps = {
       name: 'Melk de Sousa',
       avatar: 'https://github.com/melkdesousa.png',
@@ -52,7 +52,7 @@ describe('Professional entity', () => {
     expect(assert).toThrow(expected)
   })
 
-  it('deve instanciar um profissional válido', () => {
+  it('should be instantiate a valid professional', () => {
     const props: IProfessionalProps = {
       name: 'Melk de Sousa',
       avatar: 'https://github.com/melkdesousa.png',
