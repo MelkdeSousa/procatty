@@ -1,5 +1,6 @@
 import { z as zod } from 'zod'
 
+import { PHONE_NUMBER_PT_BT } from '../../constants/regex'
 import { Entity } from '../entity'
 
 export interface IProfessionalProps {
@@ -21,14 +22,12 @@ export const professionalSchemaValidation = zod.object({
     .min(2, { message: 'name must have at least 2 characters' }),
   bio: zod
     .string()
-    .max(256, { message: 'bio must have at most 256 characters' }),
+    .max(256, { message: 'bio must have at most 256 characters' })
+    .optional(),
   phone: zod
     .string()
-    .regex(
-      // regex mobile phone number pt-BR
-      /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm,
-      { message: 'phone is invalid' })
-    .nonempty({ message: 'phone is required' })
+    .regex(PHONE_NUMBER_PT_BT, { message: 'phone is invalid' })
+    .min(1, { message: 'phone is required' })
     .max(16, { message: 'phone must have at most 16 characters' })
     .min(8, { message: 'phone must have at least 8 characters' }),
   email: zod
@@ -41,7 +40,6 @@ export const professionalSchemaValidation = zod.object({
 
 export class Professional extends Entity {
   private props: IProfessionalProps;
-
 
   get name(): string {
     return this.props.name
