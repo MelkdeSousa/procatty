@@ -12,11 +12,13 @@ describe('Professional entity', () => {
       phone: '91986043359'
     }
 
-    const assert = () => new Professional(props)
+    const id = crypto.randomUUID()
 
-    const expected = 'email: email is invalid'
+    const assert = () => new Professional(id, props)
 
-    expect(assert).toThrow(expected)
+    const expected = { key: 'email', message: 'email is invalid' }
+
+    expect(assert().errors.get('email')).toMatchObject(expected)
   })
 
   it('should throw an error that professional reported an invalid phone', () => {
@@ -28,28 +30,13 @@ describe('Professional entity', () => {
       phone: '(91) 98604-335'
     }
 
-    const assert = () => new Professional(props)
+    const id = crypto.randomUUID()
 
-    const expected = 'phone: phone is invalid'
+    const assert = () => new Professional(id, props)
 
-    expect(assert).toThrow(expected)
-  })
+    const expected = { key: 'phone', message: 'phone is invalid' }
 
-  it('should throw an error that professional have invalid id', () => {
-    const props: IProfessionalProps = {
-      name: 'Melk de Sousa',
-      avatar: 'https://github.com/melkdesousa.png',
-      bio: 'I am a professional',
-      email: 'melk@gmail.com',
-      phone: '(91) 98604-335'
-    }
-    const id = crypto.randomBytes(16).toString('hex')
-
-    const assert = () => new Professional(props, id)
-
-    const expected = 'id: id is invalid'
-
-    expect(assert).toThrow(expected)
+    expect(assert().errors.get('phone')).toMatchObject(expected)
   })
 
   it('should be instantiate a valid professional', () => {
@@ -63,9 +50,9 @@ describe('Professional entity', () => {
 
     const id = crypto.randomUUID()
 
-    const assert = () => new Professional(props, id)
+    const assert = () => new Professional(id, props)
 
     expect(assert()).toBeInstanceOf(Professional)
-    expect(assert().isValid(props)).toBeTruthy()
+    expect(assert().valid).toBeTruthy()
   })
 })
