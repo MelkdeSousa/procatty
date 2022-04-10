@@ -12,11 +12,13 @@ describe('Admin entity', () => {
       password: '123456'
     }
 
-    const assert = () => new Admin(props)
+    const id = crypto.randomUUID()
 
-    const expected = 'email: email is invalid'
+    const assert = () => new Admin(id, props)
 
-    expect(assert).toThrow(expected)
+    const expected = { key: 'email', message: 'email is invalid' }
+
+    expect(assert().errors.get('email')).toMatchObject(expected)
   })
 
   it('should throw an error that admin reported an invalid username be special characters ', () => {
@@ -28,11 +30,13 @@ describe('Admin entity', () => {
       username: 'melk.de_sousa'
     }
 
-    const assert = () => new Admin(props)
+    const id = crypto.randomUUID()
 
-    const expected = 'username: username is invalid'
+    const assert = () => new Admin(id, props)
 
-    expect(assert).toThrow(expected)
+    const expected = { key: 'username', message: 'username is invalid' }
+
+    expect(assert().errors.get('username')).toMatchObject(expected)
   })
 
   it('should throw an error that admin reported an invalid username be less than 6 characters ', () => {
@@ -44,29 +48,13 @@ describe('Admin entity', () => {
       username: 'melk'
     }
 
-    const assert = () => new Admin(props)
+    const id = crypto.randomUUID()
 
-    const expected = 'username: username must have at least 6 characters'
+    const assert = () => new Admin(id, props)
 
-    expect(assert).toThrow(expected)
-  })
+    const expected = { key: 'username', message: 'username must have at least 6 characters' }
 
-  it('should throw an error that admin have invalid id', () => {
-    const props: IAdminProps = {
-      name: 'Melk de Sousa',
-      avatar: 'https://github.com/melkdesousa.png',
-      username: 'melkdesousa',
-      email: 'melk@gmail.com',
-      password: '99wBInra0hgXQ1H'
-    }
-
-    const id = crypto.randomBytes(16).toString('hex')
-
-    const assert = () => new Admin(props, id)
-
-    const expected = 'id: id is invalid'
-
-    expect(assert).toThrow(expected)
+    expect(assert().errors.get('username')).toMatchObject(expected)
   })
 
   it('should be instantiate a valid admin', () => {
@@ -80,9 +68,9 @@ describe('Admin entity', () => {
 
     const id = crypto.randomUUID()
 
-    const assert = () => new Admin(props, id)
+    const assert = () => new Admin(id, props)
 
     expect(assert()).toBeInstanceOf(Admin)
-    expect(assert().isValid(props)).toBeTruthy()
+    expect(assert().valid).toBeTruthy()
   })
 })
