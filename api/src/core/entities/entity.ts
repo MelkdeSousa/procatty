@@ -1,44 +1,30 @@
-import crypto from 'crypto'
-import { z as zod } from 'zod'
+import { Notifications } from '@core/logic/notification';
+import { IValidator } from '@core/interfaces/helpers/validator';
 
-export const entitySchemaValidation = zod.object({
-  id: zod.string().uuid({ message: 'id is invalid' })
-})
-
-export class Entity {
-  protected readonly _id: string;
-  protected _errors: {
-    message: string,
-    field: string
-  }[] = []
+export abstract class Entity {
+  protected _id: string;
+  public valid: boolean
+  public readonly errors: Notifications
 
   get id(): string {
     return this._id
   }
 
-  get errors(): ReadonlyArray<{ message: string, field: string }> { return this._errors }
-
-  constructor(id?: string) {
-    if (id && this.idIsValid(id)) {
-      this._id = id
-    }
-
-    if (!id) {
-      this._id = crypto.randomUUID()
-    }
-
-    if (this._errors.length > 0) {
-      throw new Error(`${this._errors[0].field}: ${this._errors[0].message}`)
-    }
+  protected set id(value: string) {
+    this._id = value
   }
 
-  private idIsValid(id: string) {
-    const isValid = entitySchemaValidation.safeParse({ id: id })
+  constructor() {
+    this.valid = false
+    this.errors = new Notifications()
+  }
 
-    if (!isValid.success) {
-      isValid.error.errors.map((error) => this._errors.push({ message: error.message.toLowerCase(), field: error.path.join('.').toLowerCase() }))
-    }
+  public validate<IProps>(props: IProps, validator: IValidator<IProps>): boolean {
+    const [valid, errors] = validator.validate(props)
 
-    return isValid.success
+    this.valid = valid
+    this.errors.addAll(errors)
+
+    return valid
   }
 }
