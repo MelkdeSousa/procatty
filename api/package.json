@@ -15,8 +15,9 @@
     "predev": "yarn prisma generate && yarn prisma db push && yarn prisma db seed",
     "dev": "nodemon -w src/ -e ts,js,json -i node_modules/ -x ts-node src/app/server.ts",
     "prisma": "npx prisma",
-    "test": "jest",
-    "test:watch": "jest --no-cache --silent --watchAll"
+    "test": "jest --no-cache --verbose --colors=true",
+    "test:watch": "jest --no-cache --verbose --colors=true --watchAll",
+    "test:export": "jest --outputFile=__tests__/results.json --json"
   },
   "dependencies": {
     "@prisma/client": "^3.0.2",
