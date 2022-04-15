@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-import { IHashFunction } from "@core/interfaces/helpers/hashFunction";
+import { IHashFunction } from "@core/interfaces/helpers/hash-function";
 import { environment } from '@infra/config/environment'
 
 /* A class that implements the `IHashFunction` interface. */

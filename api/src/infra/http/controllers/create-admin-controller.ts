@@ -5,7 +5,7 @@ import {
   created,
 } from '@core/logic/http-response'
 
-import { CreateAdmin } from '@core/usecases/CreateAdmin'
+import { CreateAdmin } from '@core/usecases/create-admin'
 
 type CreateAdminControllerRequest = {
   name: string

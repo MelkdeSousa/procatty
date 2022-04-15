@@ -1,5 +1,5 @@
 import { Entity } from '@core/entities/entity'
-import { AdminValidator } from './adminValidator'
+import { AdminValidator } from './admin-validator'
 
 export interface IAdminProps {
   name: string

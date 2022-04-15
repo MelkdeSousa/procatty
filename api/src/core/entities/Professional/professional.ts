@@ -1,5 +1,5 @@
 import { Entity } from '../entity'
-import { ProfessionalValidator } from './professionalValidator'
+import { ProfessionalValidator } from './professional-validator'
 
 export interface IProfessionalProps {
   name: string

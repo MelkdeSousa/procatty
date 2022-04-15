@@ -1,6 +1,6 @@
 import { Controller } from "@core/interfaces/infra/controller"
-import { CreateAdmin } from "@core/usecases/CreateAdmin"
-import { HashFunction } from "@infra/adapter/helpers/hashFunction"
+import { CreateAdmin } from "@core/usecases/create-admin"
+import { HashFunction } from "@infra/adapter/helpers/hash-function"
 import { CreateAdminController } from "@infra/http/controllers/create-admin-controller"
 import { AdminRepository } from "@infra/repository/prisma/admin"
 

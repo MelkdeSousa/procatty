@@ -1,4 +1,4 @@
-import { IAdminProps } from "@core/entities/Admin";
+import { IAdminProps } from "@core/entities/admin";
 
 export interface IAdminRepository {
   create(id: string, admin: IAdminProps): Promise<void>

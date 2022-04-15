@@ -1,8 +1,8 @@
-import { Admin } from '@core/entities/Admin'
-import { IHashFunction } from '@core/interfaces/helpers/hashFunction'
+import { Admin } from '@core/entities/admin'
+import { IHashFunction } from '@core/interfaces/helpers/hash-function'
 import { IAdminRepository } from '@core/interfaces/repositories/admin'
 import { ICommand } from '@core/logic/command'
-import { ICreateAdminDTOInput, ICreateAdminDTOOutput, } from '@core/usecases/CreateAdmin/CreateAdminDTO'
+import { ICreateAdminDTOInput, ICreateAdminDTOOutput, } from '@core/usecases/create-admin/create-admin-dto'
 import { randomUUID } from 'crypto'
 
 export interface ICreateAdminProps {

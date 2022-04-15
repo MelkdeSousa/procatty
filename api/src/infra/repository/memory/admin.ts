@@ -1,4 +1,4 @@
-import { IAdminProps } from "@core/entities/Admin";
+import { IAdminProps } from "@core/entities/admin";
 import { IAdminRepository } from "@core/interfaces/repositories/admin";
 
 export class MemoryRepository implements IAdminRepository {

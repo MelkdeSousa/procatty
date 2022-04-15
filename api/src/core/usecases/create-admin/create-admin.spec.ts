@@ -1,9 +1,9 @@
 import { IAdminRepository } from "@core/interfaces/repositories/admin";
-import { HashFunction } from "@infra/adapter/helpers/hashFunction";
+import { HashFunction } from "@infra/adapter/helpers/hash-function";
 import { MemoryRepository } from "@infra/repository/memory/admin";
 
-import { CreateAdmin } from "./CreateAdmin";
-import { ICreateAdminDTOInput, ICreateAdminDTOOutput } from "./CreateAdminDTO";
+import { CreateAdmin } from "./create-admin";
+import { ICreateAdminDTOInput, ICreateAdminDTOOutput } from "./create-admin-dto";
 
 describe('Create Admin use case', () => {
   let adminRepository: IAdminRepository;
