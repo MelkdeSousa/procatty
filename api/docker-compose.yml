@@ -1,8 +1,7 @@
-version: '3'
+version: '3.8'
 
 services:
   database:
-    container_name: procatty_database
     image: postgres:13-alpine
     restart: always
 
@@ -16,22 +15,3 @@ services:
 
     ports:
       - $DB_LOCAL_PORT:$POSTGRES_PORT
-
-  app:
-    image: node:lts-alpine
-    restart: always
-
-    volumes:
-      - ./:/app
-
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - port=$APP_LOCAL_PORT
-
-    ports:
-      - ${APP_LOCAL_PORT}:${APP_DOCKER_PORT}
-
-    depends_on:
-      - database
