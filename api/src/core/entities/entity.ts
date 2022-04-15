@@ -6,20 +6,20 @@ export abstract class Entity {
   public valid: boolean
   public readonly errors: Notifications
 
-  get id(): string {
+  get id (): string {
     return this._id
   }
 
-  protected set id(value: string) {
+  protected set id (value: string) {
     this._id = value
   }
 
-  constructor() {
+  constructor () {
     this.valid = false
     this.errors = new Notifications()
   }
 
-  public validate<IProps>(props: IProps, validator: IValidator<IProps>): boolean {
+  public validate<IProps> (props: IProps, validator: IValidator<IProps>): boolean {
     const [valid, errors] = validator.validate(props)
 
     this.valid = valid
