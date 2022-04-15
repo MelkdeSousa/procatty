@@ -1,0 +1,20 @@
+export const environment = {
+  postgres_user: process.env['POSTGRES_USER'],
+  postgres_password: process.env['POSTGRES_PASSWORD'],
+  postgres_root: process.env['POSTGRES_ROOT'],
+  postgres_database: process.env['POSTGRES_DATABASE'],
+  postgres_port: process.env['POSTGRES_PORT'],
+  db_local_port: process.env['DB_LOCAL_PORT'],
+  database_url: process.env['DATABASE_URL'],
+  app_local_port: process.env['APP_LOCAL_PORT'],
+  app_docker_port: process.env['APP_DOCKER_PORT'],
+  port: process.env['PORT'],
+  salt_hash: process.env['SALT_HASH'] as string,
+  jwt_secret: process.env['JWT_SECRET'],
+  pepper_hash: process.env['PEPPER_HASH'],
+  seed_admin_password: process.env['SEED_ADMIN_PASSWORD'],
+  seed_admin_email: process.env['SEED_ADMIN_EMAIL'],
+  seed_admin_username: process.env['SEED_ADMIN_USERNAME'],
+  seed_admin_name: process.env['SEED_ADMIN_NAME'],
+}
+

@@ -12,39 +12,50 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:restart": "docker-compose restart",
-    "predev": "yarn prisma generate && yarn prisma db push && yarn prisma db seed",
-    "dev": "nodemon -w src/ -e ts,js,json -i node_modules/ -x ts-node src/app/server.ts",
-    "prisma": "npx prisma"
+    "predev": "yarn prisma generate && yarn prisma db push",
+    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --exit-child --clear -r tsconfig-paths/register  src/infra/http/server.ts",
+    "prisma": "npx prisma",
+    "test": "jest --no-cache --verbose --colors=true",
+    "test:watch": "jest --no-cache --verbose --colors=true --watchAll",
+    "test:export": "jest --outputFile=__tests__/results.json --json",
+    "swagger:gen": "node src/infra/http/swagger.js"
   },
   "dependencies": {
     "@prisma/client": "^3.0.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.0",
+    "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "zod": "^3.14.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
+    "@types/dotenv-flow": "^3.2.0",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.5",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.9.0",
+    "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.12.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^26.1.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.12",
     "prisma": "^3.0.2",
+    "ts-jest": "^27.1.4",
     "ts-node": "^10.2.1",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.14.1",
     "typescript": "^4.4.2"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   }
 }

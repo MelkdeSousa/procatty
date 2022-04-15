@@ -1,9 +1,12 @@
-# Teste contratação Tiva #
-Olá dev,
-Este teste prático é de cárater obrigatório para nosso processo de contratação, e tem como objetivo conseguir avaliar a capacidade de construção e organização do código.
-Bom trabalho! :thumbsup:
-____________________
-## Resumo do projeto ##
+# Teste contratação Tiva
+
+> Olá dev,
+> Este teste prático é de caráter obrigatório para nosso processo
+> de contratação, e tem como objetivo conseguir avaliar a
+> capacidade de construção e organização do código.
+> Bom trabalho! :thumbsup:
+
+## Resumo do projeto
 
 * Construir uma API para um catálogo de profissionais e consumir numa aplicação.
 * Todo retorno deve ser em **JSON**.
@@ -11,81 +14,75 @@ ____________________
 * Usar DB **MySQL** ou **PostgreSQL**.
 * Incluir Documentação no README do Git (com instruções de instalação e de uso).
 
-____________________
+*Extras opcionais:*
+    ****Usar Docker para facilitar teste.***
+    **Consumir a API em uma aplicação (web ou mobile).*
 
-* *Extras opcionais:*
-    * ***Usar Docker para facilitar teste.***
-    * *Consumir a API em uma aplicação (web ou mobile).*
-____________________
-## O projeto: ##
+## O projeto
 
-1. **Login de pessoas autorizadas para gerir a aplicação (Admins)**
+### RF - 01
 
+* Login de pessoas autorizadas para gerir a aplicação (Admins)
 * Banco de dados já precisa vim populado com o primeiro Admin.
 * Cadastro de admins só pode ser feito por outro admin.
 
-------------
+### RF - 02
 
-2. **CRUD de profissionais.**
-
-* Criar, editar e deletar somente com login Admin :warning:
-* Profissional tem os seguintes campos: 
-    * Nome, 
-    * Descrição, 
-    * Email,
-    * número de celular,
-    * Foto de perfil.
-* Exibir informações do profissonal é aberto, deve retornar todos os dados no seguinte formato:
+* CRUD de profissionais.
+* ***Criar, editar e deletar somente com login Admin :warning:***
+* Profissional tem os seguintes campos:
+  * Nome
+  * Descrição
+  * Email
+  * número de celular
+  * Foto de perfil
+* Exibir informações do profissional é aberto, deve retornar todos os dados no seguinte formato:
 
 ```JSON
-    {
-        "name": "",
-        "description": "",
-        // ...
-        "addresses": [{/*...*/},{/*...*/}],
-        "available_schedules": [{/*...*/},{/*...*/}]
-    }
+{
+    "name": "",
+    "description": "",
+    // ...
+    "addresses": [{/*...*/},{/*...*/}],
+    "available_schedules": [{/*...*/},{/*...*/}]
+}
 ```
 
-------------
+### RF - 03
 
-3. **Cadastro de Endereços.**
-
+* Cadastro de Endereços.
 * Criar, editar e deletar somente com login Admin :warning:
 * Um profissional pode ter vários endereços de atuação.
-* Os campos de endereços são: 
-     * CEP,
-     * Estado,
-     * Cidade,
-     * Bairro,
-     * Rua,
-     * Nº
+* Os campos de endereços são:
+  * CEP,
+  * Estado,
+  * Cidade,
+  * Bairro,
+  * Rua,
+  * Nº
 
-------------
+### RF - 04
 
-4. **Cadastro de Agenda.**
-
-* Criar, editar e deletar somente com login Admin :warning:
+* Cadastro de Agenda
+* ***Criar, editar e deletar somente com login Admin :warning:***
 * Um profissional pode ter várias agendas.
-* Os campos da agenda são: 
-     * data de início,
-     * data de fim,
-     * hora de início,
-     * hora de fim,
+* Os campos da agenda são:
+  * data de início,
+  * data de fim,
+  * hora de início,
+  * hora de fim,
 
-------------
+### RF - 05
 
-5. **Função agendar.**
-   
+* Função agendar
 * Qualquer um pode agendar com o profissional
 * É preciso informar o nome, email, telefone para contato, dia agendado, hora de início e hora de fim.
 * Não pode permitir que tenham dois agendamentos no mesmo horário.
 * *Opcional: Disparar email para o profissional avisando que houve um novo agendamento*
 * *Opcional: Integrar com Google Calendário.*
 
-------------
+### RF - 06
 
-6. ***Opcional: Função consultar agenda.***
-   
+* Função consultar agenda
 * *Somente com login Admin* :warning:
-* *Retorna todos os agendamento do profissional*
+* Retorna todos os agendamento do profissional

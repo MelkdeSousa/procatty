@@ -1,14 +1,12 @@
-ARG port
-
 FROM node:lts-alpine
+
+USER node
 
 WORKDIR /app
 
-COPY package.json ./
-RUN npm install
-
+COPY package.json yarn.* tsconfig.json ./
 COPY . .
 
-EXPOSE ${port}
+RUN yarn install
 
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]
