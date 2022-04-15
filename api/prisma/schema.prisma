@@ -9,96 +9,15 @@ generator client {
 }
 
 model Admin {
-  id       String @default(uuid()) @db.Uuid
+  id       String  @default(uuid()) @db.Uuid
   name     String
-  username String @id @unique
-  email    String @unique
+  username String  @id @unique
+  email    String  @unique
   password String
+  avatar   String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   @@map("admins")
-}
-
-model Professional {
-  id          String @id @default(uuid()) @db.Uuid
-  name        String
-  description String
-  email       String
-  phone       String
-  avatar      String
-
-  addresses           Address[]
-  schedules           Schedule[]
-  available_schedules AvailableSchedule[]
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@map("professionals")
-}
-
-model AvailableSchedule {
-  id String @id @default(uuid()) @db.Uuid
-
-  start_date_time DateTime @db.Timestamp
-  end_date_time   DateTime @db.Timestamp
-
-  start_date String
-  start_time String
-
-  end_date String
-  end_time String
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  professional_id String       @db.Uuid
-  professional    Professional @relation(fields: [professional_id], references: [id])
-
-  @@map("available_schedules")
-}
-
-model Schedule {
-  id String @id @default(uuid()) @db.Uuid
-
-  name      String
-  email     String
-  telephone String
-
-  start_date_time DateTime @db.Timestamp
-  end_date_time   DateTime @db.Timestamp
-
-  start_date String
-  end_date   String
-
-  start_time String
-  end_time   String
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  professional_id String       @db.Uuid
-  professional    Professional @relation(fields: [professional_id], references: [id])
-
-  @@map("schedules")
-}
-
-model Address {
-  id          String @id @default(uuid()) @db.Uuid
-  postal_code String
-  state       String
-  city        String
-  district    String
-  street      String
-  number      Int
-
-  professional_id String       @db.Uuid
-  professional    Professional @relation(fields: [professional_id], references: [id])
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@map("addresses")
 }
